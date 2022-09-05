@@ -1,0 +1,12 @@
+.software{
+ -webkit-text-stroke: 1px rgba(255, 178, 10,0.5);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+.stay{
+  -webkit-text-stroke: 0.3px white;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   text-rendering: optimizeLegibility;
+ }

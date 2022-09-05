@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="53" height="55" viewBox="0 0 53 55">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_100" data-name="Rectangle 100" width="53" height="55" rx="11" fill="#fac119" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_44" data-name="Mask Group 44" clip-path="url(#clip-path)">
+    <g id="SMS_History" data-name="SMS History" transform="translate(-5.048 -4.255)">
+      <path id="Path_415" data-name="Path 415" d="M10.1,48.158V20.4H50.477v8.3a17.338,17.338,0,0,1,5.048,2.448V20.4a5.03,5.03,0,0,0-5.048-5.048h-10.1V10.3a5.03,5.03,0,0,0-5.048-5.048h-10.1A5.03,5.03,0,0,0,20.191,10.3v5.048H10.1A5.009,5.009,0,0,0,5.073,20.4L5.048,48.158A5.03,5.03,0,0,0,10.1,53.206H29.478a16.972,16.972,0,0,1-1.514-5.048ZM25.238,10.3h10.1v5.048h-10.1Z" fill="#fac119"/>
+      <path id="Path_416" data-name="Path 416" d="M45.429,33.018A12.619,12.619,0,1,0,58.048,45.637,12.624,12.624,0,0,0,45.429,33.018Zm4.164,18.55-5.426-5.426V38.066h2.524v7.041l4.669,4.669Z" fill="#fac119"/>
+    </g>
+  </g>
+</svg>

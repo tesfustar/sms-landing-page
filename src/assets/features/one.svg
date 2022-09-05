@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="53" height="55" viewBox="0 0 53 55">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_100" data-name="Rectangle 100" width="53" height="55" rx="11" transform="translate(140 3224)" fill="#fac119" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_102" data-name="Rectangle 102" width="53" height="53" transform="translate(0 0)" fill="#fac119"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_41" data-name="Mask Group 41" transform="translate(-140 -3224)" clip-path="url(#clip-path)">
+    <g id="Bulk_Sms" data-name="Bulk Sms" transform="translate(140 3225.104)" clip-path="url(#clip-path-2)">
+      <path id="Path_410" data-name="Path 410" d="M26.926,3.246h15.9A11.937,11.937,0,0,1,54.751,15.171v15.9A11.937,11.937,0,0,1,42.826,43V39.022a7.958,7.958,0,0,0,7.95-7.95v-15.9a7.958,7.958,0,0,0-7.95-7.95h-15.9a7.958,7.958,0,0,0-7.95,7.95H15A11.937,11.937,0,0,1,26.926,3.246Z" transform="translate(-3.958 -1.038)" fill="#fac119"/>
+      <path id="Path_411" data-name="Path 411" d="M30.824,15.246h-15.9A11.937,11.937,0,0,0,3,27.171V53.009A1.987,1.987,0,0,0,4.987,55H30.824A11.937,11.937,0,0,0,42.75,43.071v-15.9A11.937,11.937,0,0,0,30.824,15.246Zm7.95,27.825a7.958,7.958,0,0,1-7.95,7.95H6.974V27.171a7.958,7.958,0,0,1,7.95-7.95h15.9a7.958,7.958,0,0,1,7.95,7.95Z" transform="translate(-0.791 -4.204)" fill="#fac119"/>
+      <path id="Path_412" data-name="Path 412" d="M15,36.246H37.084v3.681H15Zm0,7.361H30.459v3.681H15Z" transform="translate(-3.958 -9.746)" fill="#fac119"/>
+    </g>
+  </g>
+</svg>
