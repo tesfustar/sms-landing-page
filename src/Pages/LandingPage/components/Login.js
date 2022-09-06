@@ -61,7 +61,7 @@ const Login = ({onClose}) => {
       const loginMutation = useMutation(
         async (newData) =>
           await axios.post(
-            "http://backend.smsethiopia.com/api/user-login",
+            `${process.env.REACT_APP_BACKEND_URL}user-login`,
             newData,
             {
               headers,

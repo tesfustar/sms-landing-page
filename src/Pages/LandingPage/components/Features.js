@@ -85,7 +85,7 @@ export default function Features() {
           {featureData.slice(0, 3).map((item) => (
             <div className="flex items-start space-x-4" key={item.id}>
               <img src={item.img} alt="" className="h-8" />
-              <div className="text-white">
+              <div className="text-white flex flex-col items-start space-y-3">
                 <h1 className="font-bold text-xl">{item.title}</h1>
                 <p className="text-[13px] font-light ">{item.description}</p>
               </div>
@@ -96,9 +96,9 @@ export default function Features() {
         <div className="max-w-6xl mx-auto p-3 grid grid-cols-1 md:grid-cols-3 gap-3 py-4">
           <div className="flex flex-col items-start space-y-10">
             {featureData.slice(3, 5).map((item) => (
-              <div className="flex items-start space-x-4">
+              <div className="flex items-start space-x-4"  key={item.id}>
                 <img src={item.img} alt="" className="h-8" />
-                <div className="text-white">
+                <div className="text-white flex flex-col items-start space-y-3">
                   <h1 className="font-bold text-2xl">{item.title}</h1>
                   <p className="text-sm font-light ">{item.description}</p>
                 </div>
@@ -110,9 +110,9 @@ export default function Features() {
           </div>
           <div className="flex flex-col items-start space-y-10">
             {featureData.slice(3, 5).map((item) => (
-              <div className="flex items-start space-x-4">
+              <div className="flex items-start space-x-4" key={item.id}>
                 <img src={item.img} alt="" className="h-8" />
-                <div className="text-white">
+                <div className="text-white flex flex-col items-start space-y-3">
                   <h1 className="font-bold text-2xl">{item.title}</h1>
                   <p className="text-sm font-light ">{item.description}</p>
                 </div>
@@ -123,7 +123,7 @@ export default function Features() {
       </div>
 
       {/* end point api part */}
-      <div className="">
+      <div className="pb-10">
         <div className="max-w-5xl mx-auto p-3 grid grid-cols-1 md:grid-cols-2 gap-3 pt-10 w-full ">
           <div className="flex items-start space-x-2">
             <img src={api} alt="" className="h-12" />
@@ -134,7 +134,7 @@ export default function Features() {
                 documentation. The integration and operation of the API to their
                 existing system will be done by the customers' professionals.
               </p>
-              <button className="bg-[#F1C22E] p-2  text-[#17203F] rounded-full hover:shadow-lg font-medium px-5">Read the docs {">"}</button>
+              <button className="bg-[#F1C22E] p-2 hover:tracking-[1px] duration-300  text-[#17203F] rounded-full hover:shadow-lg font-medium px-5">Read the docs {">"}</button>
             </div>
           </div>
           <div className="">

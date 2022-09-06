@@ -16,7 +16,7 @@ import {
   PinInput,
   PinInputField,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { useMutation } from "react-query";
@@ -25,9 +25,9 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import useValidPhone from "../../../hooks/useValidPhone";
 import { useHomeContext } from "../../../context/HomeContext";
 import { useAuth } from "../../../context/auth";
-const Register = ({onClose}) => {
-  const {isModalOpen, setIsModalOpen} = useHomeContext()
-  const {login} =useAuth()
+const Register = ({ onClose }) => {
+  const { isModalOpen, setIsModalOpen } = useHomeContext();
+  const { login } = useAuth();
   const [phone, setPhone] = useValidPhone();
   const [showPassword, setShowPassword] = useState(true);
   const [isAgreed, setIsAgreed] = useState(false);
@@ -49,6 +49,11 @@ const Register = ({onClose}) => {
     setShowConfirmPassword(
       (prevShowConfirmPassword) => !prevShowConfirmPassword
     );
+    useEffect(() => {
+      if ([...Code].length == 6) {
+        otpMutationSubmitHandler();
+      }
+    }, [Code]);
   const headers = {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -57,62 +62,66 @@ const Register = ({onClose}) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const LoginHandler = () => {
-    if(!hasPhone){
-        if (!phone) {
-            toast({
-                title: "Please Enter you phonenumber.",
-                status: "warning",
-                duration: 1800,
-                isClosable: true,
-              });
-              return;
-        }
-        if(formData.firstName == '' || formData.lastName == '' || formData.password == ''){
-            toast({
-                title: "Please fill the fields.",
-                status: "warning",
-                duration: 1800,
-                isClosable: true,
-              });
-              return; 
-        }
-        if(formData.password.length < 6){
-            toast({
-                title: "password should be at least 6 character.",
-                status: "warning",
-                duration: 1800,
-                isClosable: true,
-              });
-              return; 
-        }
-        if(formData.password !== formData.confirmPassword){
-            toast({
-                title: "password don't match.",
-                status: "warning",
-                duration: 1800,
-                isClosable: true,
-              });
-              return;  
-        }
-        if (!isAgreed) {
-            toast({
-              title: "Please Agree with the terms.",
-              status: "warning",
-              duration: 1800,
-              isClosable: true,
-            });
-            return;
-          }
-     
-          subscriberLoginSubmitHandler()
-    }else{
-        otpMutationSubmitHandler()
+    if (!hasPhone) {
+      if (!phone) {
+        toast({
+          title: "Please Enter you phonenumber.",
+          status: "warning",
+          duration: 1800,
+          isClosable: true,
+        });
+        return;
+      }
+      if (
+        formData.firstName == "" ||
+        formData.lastName == "" ||
+        formData.password == ""
+      ) {
+        toast({
+          title: "Please fill the fields.",
+          status: "warning",
+          duration: 1800,
+          isClosable: true,
+        });
+        return;
+      }
+      if (formData.password.length < 6) {
+        toast({
+          title: "password should be at least 6 character.",
+          status: "warning",
+          duration: 1800,
+          isClosable: true,
+        });
+        return;
+      }
+      if (formData.password !== formData.confirmPassword) {
+        toast({
+          title: "password don't match.",
+          status: "warning",
+          duration: 1800,
+          isClosable: true,
+        });
+        return;
+      }
+      if (!isAgreed) {
+        toast({
+          title: "Please Agree with the terms.",
+          status: "warning",
+          duration: 1800,
+          isClosable: true,
+        });
+        return;
+      }
+
+      subscriberLoginSubmitHandler();
+    } else {
+      otpMutationSubmitHandler();
     }
   };
   const loginMutation = useMutation(
     async (newData) =>
       await axios.post(
-        "http://backend.smsethiopia.com/api/company/sign-up",
+        `${process.env.REACT_APP_BACKEND_URL}company/sign-up`,
         newData,
         {
           headers,
@@ -168,7 +177,7 @@ const Register = ({onClose}) => {
   const otpMutation = useMutation(
     async (newData) =>
       await axios.post(
-        "http://backend.smsethiopia.com/api/verify-otp",
+        `${process.env.REACT_APP_BACKEND_URL}verify-otp`,
         newData,
         {
           headers,
@@ -218,7 +227,7 @@ const Register = ({onClose}) => {
   return (
     <VStack>
       {!hasPhone ? (
-        <VStack alignItems={'flex-start'}>
+        <VStack alignItems={"flex-start"}>
           <InputGroup>
             <InputLeftAddon children="+251" fontWeight={"medium"} />
             <Input
@@ -227,7 +236,7 @@ const Register = ({onClose}) => {
               name="phone"
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
-             />
+            />
           </InputGroup>
           <HStack>
             <Input
@@ -237,8 +246,13 @@ const Register = ({onClose}) => {
               value={formData.firstName}
               onChange={handleChange}
             />
-            <Input type="text" placeholder="lasr Name" name="lastName"   value={formData.lastName}
-                  onChange={handleChange}/>
+            <Input
+              type="text"
+              placeholder="lasr Name"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+            />
           </HStack>
           <InputGroup size="md">
             <Input
@@ -279,19 +293,27 @@ const Register = ({onClose}) => {
             </InputRightElement>
           </InputGroup>
           <HStack>
-            <Checkbox name="agree"    isChecked={isAgreed}
-            onChange={(e) => setIsAgreed(e.target.checked)}/>
+            <Checkbox
+              name="agree"
+              isChecked={isAgreed}
+              onChange={(e) => setIsAgreed(e.target.checked)}
+            />
             <Text fontSize={15} fontWeight={"medium"}>
               {" "}
               I agree with privacy policy & terms
             </Text>
           </HStack>
-          <Button size="md" bg={'#F1C22E'} width={"100%"}  onClick={LoginHandler}>
-            {loginMutation.isLoading ? <Spinner  size={'sm'}/> : "Sign Up"}
+          <Button
+            size="md"
+            bg={"#F1C22E"}
+            width={"100%"}
+            onClick={LoginHandler}
+          >
+            {loginMutation.isLoading ? <Spinner size={"sm"} /> : "Sign Up"}
           </Button>
         </VStack>
       ) : (
-        <VStack>
+        <VStack w={'100%'}>
           <HStack>
             <PinInput placeholder="" value={Code} onChange={(e) => setCode(e)}>
               <PinInputField bg={"white"} />
@@ -304,12 +326,11 @@ const Register = ({onClose}) => {
           </HStack>
           <Button
             size="md"
-            colorScheme="blue"
-            width={"100%"}
+            bg={'#F1C22E'} width={"100%"}
             type="submit"
             onClick={LoginHandler}
           >
-            {otpMutation.isLoading ? <Spinner  size={'sm'}/> : "Verify"}
+            {otpMutation.isLoading ? <Spinner size={"sm"} /> : "Verify"}
           </Button>
         </VStack>
       )}

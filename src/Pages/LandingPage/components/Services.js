@@ -34,7 +34,7 @@ export default function Services() {
     return (
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
         {Data?.map((data, index) => (
-          <HStack spacing={6}>
+          <HStack spacing={6} key={index}>
             <GridItems
               key={index}
               icon={data?.icon}

@@ -99,7 +99,7 @@ export default function NavBar({
             color={"white"}
             fontSize={"sm"}
             bg={"#F1C22E"}
-            onClick={(user && token) && logout}
+            onClick={user && token && logout}
           >
             {user && token ? "Log out" : "Sign In"}
           </Button>
@@ -190,11 +190,17 @@ export default function NavBar({
                   PACKAGE
                 </Button>
                 <Stack alignItems={"center"}>
-                  <OrderModal plan={""} type={""} period={""}>
-                    <Button size={"md"} color={"white"} variant={"link"}>
-                      ORDER NOW
+                  <RegisterModal>
+                    <Button
+                      size={"md"}
+                      color={"white"}
+                      fontSize={"sm"}
+                      bg={"#F1C22E"}
+                      onClick={user && token && logout}
+                    >
+                      {user && token ? "Log out" : "Sign In"}
                     </Button>
-                  </OrderModal>
+                  </RegisterModal>
                 </Stack>
               </Stack>
             </DrawerBody>

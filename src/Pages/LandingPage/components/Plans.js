@@ -5,10 +5,43 @@ import { useAuth } from "../../../context/auth";
 import { useHomeContext } from "../../../context/HomeContext";
 import { planData } from "./Data";
 import RegisterModal from "./RegisterModal";
+import { useQuery } from "react-query";
+import axios from "axios";
 const Plans = () => {
   const { setPlanId, setIsModalOpen } = useHomeContext();
   const { user, token } = useAuth();
   //Function
+  const headers = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+  const profileData = useQuery(
+    ["profileDataApi"],
+    async () =>
+      await axios.get(`${process.env.REACT_APP_BACKEND_URL}profile`, {
+        headers,
+      }),
+    {
+      keepPreviousData: false,
+      refetchOnWindowFocus: false,
+      retry: false,
+      enabled: !!token,
+      onSuccess: (res) => {
+        console.log(res?.data);
+      },
+    }
+  );
+  console.log(profileData?.data?.data?.data?.company_id);
+
+  const handleClick = (item) => {
+    if (profileData?.data?.data?.data?.company_id) {
+      alert("you have a company");
+    } else {
+      setPlanId(item.planId);
+      setIsModalOpen(true);
+    }
+  };
   function Head() {
     return (
       <Stack textAlign={"center"} alignItems={"center"} spacing={4}>
@@ -101,7 +134,7 @@ const Plans = () => {
                 </RegisterModal>
               ) : (
                 <button
-                  onClick={() => {setPlanId(item.planId);setIsModalOpen(true)}}
+                  onClick={()=>handleClick(item)}
                   className="w-full bg-[#17203F] p-2 text-white rounded-full"
                 >
                   {item.btn}

@@ -36,7 +36,7 @@ const Information = () => {
   };
   const toast = useToast();
   const { token } = useAuth();
-  const { planId } = useHomeContext();
+  const { planId ,setIsOpen} = useHomeContext();
   const [logoFile, setLogoFile] = useState(null)
   const [logo, setLogo] = useState()
   const [showDetail, setShowDetail] = useState(false)
@@ -113,24 +113,7 @@ const Information = () => {
     }),
     [isFocused, isDragAccept, isDragReject]
   );
-  // const licenceFileList = licenceFile.map((file) => (
-  //   <div
-  //     key={file.path}
-  //     className="text-white text-center w-full font-medium dark:bg-[#2c3345]/50
-  //        bg-[#F1C22E] p-1 rounded-sm border border-dashed border-[#00e676]"
-  //   >
-  //     {file.path} - {file.size} bytes
-  //   </div>
-  // ));
-  // const identificationFileList = identificationFile.map((file) => (
-  //   <div
-  //     key={file.path}
-  //     className="text-white text-center w-full font-medium dark:bg-[#2c3345]/50
-  //        bg-[#F1C22E] p-1 rounded-sm border border-dashed border-[#00e676]"
-  //   >
-  //     {file.path} - {file.size} bytes
-  //   </div>
-  // ));
+
   console.log({"identificationFile":identificationFile[0]})
   const headers = {
     "Content-Type": "application/json",
@@ -162,7 +145,7 @@ const Information = () => {
   const upgradePlanFileMutation = useMutation(
     async (newData) =>
       await axios.post(
-        `http://backend.smsethiopia.com/api/companies`,
+        `${process.env.REACT_APP_BACKEND_URL}companies`,
         newData,
         {
           headers,
@@ -177,7 +160,7 @@ const Information = () => {
       let logoData = new FormData();
       logoData.append("license", licenceFile[0]);
       logoData.append("id_card", identificationFile[0]);
-      logoData.append("logo", logoFile[0]);
+      logoFile && logoData.append("logo", logoFile[0]);
       logoData.append("name", formData.name);
       logoData.append("alias", formData.alias);
       logoData.append("phone", formData.phone);
@@ -198,6 +181,7 @@ const Information = () => {
             duration: 1800,
             isClosable: true,
           });
+          setIsOpen(false)
         },
         onError: (err) => {
           console.log(err);
