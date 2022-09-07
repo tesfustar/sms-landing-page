@@ -7,9 +7,11 @@ import { planData } from "./Data";
 import RegisterModal from "./RegisterModal";
 import { useQuery } from "react-query";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Plans = () => {
   const { setPlanId, setIsModalOpen } = useHomeContext();
   const { user, token } = useAuth();
+  const navigate = useNavigate()
   //Function
   const headers = {
     "Content-Type": "application/json",
@@ -32,12 +34,19 @@ const Plans = () => {
       },
     }
   );
-  console.log(profileData?.data?.data?.data?.company_id);
+  console.log(profileData?.data?.data?.data);
 
+
+  const handleOpen=()=>{
+    window.open('http://sms-dashboard.smsethiopia.com')
+
+  }
   const handleClick = (item) => {
-    if (profileData?.data?.data?.data?.company_id) {
-      alert("you have a company");
-    } else {
+    if (profileData?.data?.data?.data?.company_id && profileData?.data?.data?.data?.company?.approved  === false) {
+      navigate('/pending')
+    } else if(profileData?.data?.data?.data?.company_id && profileData?.data?.data?.data?.company?.approved  === true){
+        window.open('http://sms-dashboard.smsethiopia.com')
+    }else  {
       setPlanId(item.planId);
       setIsModalOpen(true);
     }
@@ -88,7 +97,7 @@ const Plans = () => {
               ))}
             </div>
             <div className=" md:px-5 absolute bottom-5 w-full">
-              <button
+              <button onClick={handleOpen}
                 className="w-full bg-[#F1C22E] p-2 text-white hover:scale-[1.02] duration-300
                  rounded-full hover:shadow-xl"
               >

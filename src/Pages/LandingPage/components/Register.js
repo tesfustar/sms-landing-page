@@ -25,7 +25,9 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import useValidPhone from "../../../hooks/useValidPhone";
 import { useHomeContext } from "../../../context/HomeContext";
 import { useAuth } from "../../../context/auth";
+import { useNavigate } from "react-router-dom";
 const Register = ({ onClose }) => {
+  const navigate=useNavigate()
   const { isModalOpen, setIsModalOpen } = useHomeContext();
   const { login } = useAuth();
   const [phone, setPhone] = useValidPhone();
@@ -298,7 +300,7 @@ const Register = ({ onClose }) => {
               isChecked={isAgreed}
               onChange={(e) => setIsAgreed(e.target.checked)}
             />
-            <Text fontSize={15} fontWeight={"medium"}>
+            <Text fontSize={15} cursor={'pointer'} fontWeight={"medium"} onClick={()=>navigate('/termsCondition')}>
               {" "}
               I agree with privacy policy & terms
             </Text>

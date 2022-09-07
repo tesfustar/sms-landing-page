@@ -1,4 +1,6 @@
 import LandingPage from "./Pages/LandingPage/LandingPage";
+import TermsCondition from "./Pages/LandingPage/TermsCondition";
+import Pending from "./Pages/LandingPage/Pending";
 import Footer from "./Pages/Footer/Footer";
 import NavBar from "./Pages/NavBar/NavBar";
 import Information from "./Pages/LandingPage/components/Information";
@@ -7,6 +9,8 @@ import { useAuth } from "./context/auth";
 import { useQuery } from "react-query";
 import axios from "axios";
 import MessengerCustomerChat from "react-messenger-customer-chat";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 function App() {
   const { user, token, logout } = useAuth();
   const headers = {
@@ -37,42 +41,20 @@ function App() {
   );
 
   return (
-    <div>
-      <LandingPage />
-      {/* <MessengerChat
-    pageId="1620237028224966"
-    language="en_US"
-    themeColor={"#000000"}
-    bottomSpacing={300}
-    loggedInGreeting="loggedInGreeting"
-    loggedOutGreeting="loggedOutGreeting"
-    greetingDialogDisplay={"show"}
-    debugMode={true}
-    onMessengerShow={() => {
-      console.log("onMessengerShow");
-    }}
-    onMessengerHide={() => {
-      console.log("onMessengerHide");
-    }}
-    onMessengerDialogShow={() => {
-      console.log("onMessengerDialogShow");
-    }}
-    onMessengerDialogHide={() => {
-      console.log("onMessengerDialogHide");
-    }}
-    onMessengerMounted={() => {
-      console.log("onMessengerMounted");
-    }}
-    onMessengerLoad={() => {
-      console.log("onMessengerLoad");
-    }}
-  />, */}
+    <>
+    <Routes>
+    <Route path="*" element={<Navigate to="/home" />} />
+    <Route path="/home" element={<LandingPage />} />
+    <Route path="/termsCondition" element={<TermsCondition />} />
+    <Route path="/pending" element={<Pending />} />
+      {/* <LandingPage /> */}
+    </Routes>
       <MessengerCustomerChat
         pageId="1620237028224966"
         appId="2290456134441224"
       />
       ,
-    </div>
+    </>
   );
 }
 

@@ -6,7 +6,9 @@ import { useMutation, useQuery } from "react-query";
 import { useHomeContext } from "../../../context/HomeContext";
 import { useDropzone } from "react-dropzone";
 import { HiDocumentText } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 const Information = () => {
+  const navigate=useNavigate()
   const baseStyle = {
     flex: 1,
     display: "flex",
@@ -182,6 +184,8 @@ const Information = () => {
             isClosable: true,
           });
           setIsOpen(false)
+          navigate('/pending')
+          
         },
         onError: (err) => {
           console.log(err);

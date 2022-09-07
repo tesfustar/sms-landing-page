@@ -24,7 +24,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import useValidPhone from "../../../hooks/useValidPhone";
 import { useHomeContext } from "../../../context/HomeContext";
 import { useAuth } from "../../../context/auth";
-const Login = ({onClose}) => {
+const Login = ({onClose,forgotPassword, setForgotPassword}) => {
     const {login} =useAuth()
     const [password, setPassword] = useState('')
     const [phone, setPhone] = useValidPhone();
@@ -109,6 +109,7 @@ const Login = ({onClose}) => {
         }
       };
   return (
+    <>
     <VStack>
        <InputGroup>
             <InputLeftAddon children="+251" fontWeight={"medium"} />
@@ -120,6 +121,9 @@ const Login = ({onClose}) => {
               onChange={(event) => setPhone(event.target.value)}
              />
           </InputGroup>  
+          <Text onClick={()=>setForgotPassword(!forgotPassword)}
+          textAlign={"end"} alignSelf={'end'} cursor={'pointer'}
+          fontSize={15} fontWeight={'medium'}>Forgot Password ?</Text>
           <InputGroup size="md">
             <Input
               pr="4.5rem"
@@ -143,6 +147,7 @@ const Login = ({onClose}) => {
             {loginMutation.isLoading ? <Spinner size={'sm'}/> : "Sign In"}
           </Button>
     </VStack>
+    </>
   )
 }
 
