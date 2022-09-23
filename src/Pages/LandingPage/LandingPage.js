@@ -38,8 +38,8 @@ export default function LandingPage() {
       <Why />
       <div ref={FeaturesRef}></div>
       <Features />
-      <div ref={ServicesRef}></div>
-      <Services />
+      {/* <div ref={ServicesRef}></div>
+      <Services /> */}
       <div ref={PlanRef}></div>
       <Plans />
       {/* <Plan /> */}

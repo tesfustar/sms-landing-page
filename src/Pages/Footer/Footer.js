@@ -52,7 +52,7 @@ export default function Footer({
           <SocialBtn
             icon={<AiFillLinkedin />}
             link={
-              "https://www.linkedin.com/authwall?trk=bf&trkInfo=AQGtBRDUy8vbCAAAAYBhERxo09L67mBIr3bwbkHHo3HPXql8iyZNVyYk_cun03vZVJiNMgwc3NSE5iQlTA4WvIVRSPC2_PDuHTXzLFLYhdPF25_3HHgr2xGvswVZB8z3GXtDAWM=&originalReferer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fjaktech%2F"
+              "https://www.linkedin.com/company/sms-ethiopia/"
             }
           />
           <SocialBtn
@@ -61,7 +61,7 @@ export default function Footer({
           />
           <SocialBtn
             icon={<FaFacebookF />}
-            link={"https://www.facebook.com/Jaktechethiopia/"}
+            link={"https://www.facebook.com/smsethiopiacom/"}
           />
         </HStack>
       </Stack>

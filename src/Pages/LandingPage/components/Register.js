@@ -117,6 +117,15 @@ const Register = ({ onClose }) => {
 
       subscriberLoginSubmitHandler();
     } else {
+      if ([...Code].length !== 6){
+        toast({
+          title: "verification code must be six.",
+          status: "warning",
+          duration: 1800,
+          isClosable: true,
+        });
+        return;
+      }
       otpMutationSubmitHandler();
     }
   };
@@ -207,7 +216,7 @@ const Register = ({ onClose }) => {
               duration: 2500,
               isClosable: true,
             });
-            login(responseData?.data?.data?.token, responseData?.data?.data);
+            // login(responseData?.data?.data?.token, responseData?.data?.data);
             onClose();
           },
           onError: (err) => {

@@ -31,8 +31,8 @@ export default function NavBar({
   //Hook
   const [isLargerThan992] = useMediaQuery("(min-width: 992px)");
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef();
   const { user, token, logout } = useAuth();
+  const btnRef = useRef();
   //Function
   function FullNav() {
     return (
@@ -104,16 +104,34 @@ export default function NavBar({
             {user && token ? "Log out" : "Sign In"}
           </Button>
         </RegisterModal>
+          {user && token && (
+            <Button
+              size={"md"}
+              color={"white"}
+              fontSize={"sm"}
+              bg={"#F1C22E"}
+              onClick={()=>window.open("http://my.smsethiopia.com")}
+            >
+              Go to dashboard
+            </Button>
+          )}
       </HStack>
     );
   }
 
+  const handleClick=()=>{
+    if(user && token){
+      logout();
+      onClose();
+
+    }
+  }
   function DrawerNav() {
     return (
       <>
         <IconButton
           variant={"outline"}
-          colorScheme={"yellow"}
+          color={"#F1C22E"}
           aria-label="Search database"
           ref={btnRef}
           onClick={onOpen}
@@ -196,7 +214,7 @@ export default function NavBar({
                       color={"white"}
                       fontSize={"sm"}
                       bg={"#F1C22E"}
-                      onClick={user && token && logout}
+                      onClick={handleClick}
                     >
                       {user && token ? "Log out" : "Sign In"}
                     </Button>

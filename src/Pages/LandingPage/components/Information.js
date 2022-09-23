@@ -38,7 +38,7 @@ const Information = () => {
   };
   const toast = useToast();
   const { token } = useAuth();
-  const { planId ,setIsOpen} = useHomeContext();
+  const { planId ,setIsModalOpen} = useHomeContext();
   const [logoFile, setLogoFile] = useState(null)
   const [logo, setLogo] = useState()
   const [showDetail, setShowDetail] = useState(false)
@@ -183,7 +183,7 @@ const Information = () => {
             duration: 1800,
             isClosable: true,
           });
-          setIsOpen(false)
+          setIsModalOpen(false)
           navigate('/pending')
           
         },

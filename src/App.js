@@ -4,6 +4,7 @@ import Pending from "./Pages/LandingPage/Pending";
 import Footer from "./Pages/Footer/Footer";
 import NavBar from "./Pages/NavBar/NavBar";
 import Information from "./Pages/LandingPage/components/Information";
+import Docs from "./Pages/LandingPage/Docs";
 import { MessengerChat } from "react-messenger-chat-plugin";
 import { useAuth } from "./context/auth";
 import { useQuery } from "react-query";
@@ -47,6 +48,7 @@ function App() {
     <Route path="/home" element={<LandingPage />} />
     <Route path="/termsCondition" element={<TermsCondition />} />
     <Route path="/pending" element={<Pending />} />
+    <Route path="/docs" element={<Docs />} />
       {/* <LandingPage /> */}
     </Routes>
       <MessengerCustomerChat
