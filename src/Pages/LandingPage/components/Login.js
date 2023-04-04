@@ -2,7 +2,7 @@ import {
   Button,
   HStack,
   Input,
-  Select,
+  useDisclosure,
   useToast,
   VStack,
   InputGroup,
@@ -25,7 +25,8 @@ import useValidPhone from "../../../hooks/useValidPhone";
 import { useHomeContext } from "../../../context/HomeContext";
 import { useAuth } from "../../../context/auth";
 import { useNavigate } from "react-router-dom";
-const Login = ({ onClose, forgotPassword, setForgotPassword }) => {
+const Login = ({ onClose, forgotPassword, setForgotPassword,isOpen }) => {
+
   const navigate=useNavigate()
   const { setIsModalOpen, isModalOpen,planId } = useHomeContext();
   const { login, token } = useAuth();
@@ -40,7 +41,7 @@ const Login = ({ onClose, forgotPassword, setForgotPassword }) => {
     Accept: "application/json",
   };
   const profileData = useQuery(
-    ["profileDataApi", isModalOpen],
+    ["profileDataApi", isOpen,onClose],
     async () =>
       await axios.get(`${process.env.REACT_APP_BACKEND_URL}profile`, {
         headers,
@@ -77,17 +78,17 @@ const Login = ({ onClose, forgotPassword, setForgotPassword }) => {
     LoginSubmitHandler();
   };
   const handleClick = (item) => {
-    if (
+    if (profileData.isFetched &&
       profileData?.data?.data?.data?.company_id &&
       profileData?.data?.data?.data?.company?.approved === false
     ) {
       navigate("/pending");
-    } else if (
+    } else if (profileData.isFetched &&
       profileData?.data?.data?.data?.company_id &&
       profileData?.data?.data?.data?.company?.approved === true
     ) {
       window.open("http://my.smsethiopia.com");
-    } else if(planId) {
+    } else if(profileData.isFetched && planId) {
       setIsModalOpen(true)
     }else{
       
@@ -126,7 +127,14 @@ const Login = ({ onClose, forgotPassword, setForgotPassword }) => {
             );
             login(responseData?.data?.data?.token, responseData?.data?.data);
             onClose();
-            handleClick();
+            // handleClick();
+            if(responseData?.data?.data?.company_id){
+              window.open("http://my.smsethiopia.com");
+            }else if(planId){
+              setIsModalOpen(true)
+            }else{
+
+            }
           },
           onError: (err) => {
             console.log(err);

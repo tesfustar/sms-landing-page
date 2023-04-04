@@ -16,6 +16,15 @@ const DocNav = () => {
             </Link>
         </div>
         <div>
+          {(user && token ) ?
+            <button
+            onClick={user && token && logout}
+            className="bg-[#F1C22E] text-[#16213F]
+              p-2 px-5 rounded-md font-medium"
+          >
+            Log out
+          </button>
+          :
           <RegisterModal>
             <button
               onClick={user && token && logout}
@@ -24,7 +33,7 @@ const DocNav = () => {
             >
               {user && token ? "Log out" : "Sign In"}
             </button>
-          </RegisterModal>
+          </RegisterModal>}
         </div>
       </div>
     </header>

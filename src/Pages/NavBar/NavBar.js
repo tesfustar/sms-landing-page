@@ -104,7 +104,7 @@ export default function NavBar({
             {user && token ? "Log out" : "Sign In"}
           </Button>
         </RegisterModal>
-          {user && token && (
+          {/* {user && token && (
             <Button
               size={"md"}
               color={"white"}
@@ -114,7 +114,7 @@ export default function NavBar({
             >
               Go to dashboard
             </Button>
-          )}
+          )} */}
       </HStack>
     );
   }

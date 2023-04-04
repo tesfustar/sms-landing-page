@@ -107,7 +107,7 @@ export default function HeroSection() {
               onClick={() => window.open("http://my.smsethiopia.com")}
               className="bg-[#F1C22E] p-2 px-10 rounded-sm hover:rounded-full transition ease-in-out duration-300"
             >
-              Sign Up for Free
+              Start free trial
             </button>
           </div>
           <div className="relative flex-col hidden  md:flex ">

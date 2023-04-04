@@ -199,7 +199,7 @@ const Plans = () => {
             </div>
             <div className="w-full px-5 absolute bottom-5  hover:scale-[1.02] duration-300">
               <button className="w-full bg-[#17203F] p-2 text-white rounded-full">
-                <a href={"tel:+251 911520105"}>{item.btn}</a>
+                <a href={"tel:+251 944721682"}>{item.btn}</a>
               </button>
             </div>
           </div>

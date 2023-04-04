@@ -14,7 +14,8 @@ import { AiFillSkype, AiFillLinkedin, AiOutlineTwitter } from "react-icons/ai";
 import { BsInstagram } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import footer from "../../assets/Footer.png";
-
+import { FaBars, FaMapMarker } from "react-icons/fa";
+import { BsFillTelephoneFill } from "react-icons/bs";
 export default function Footer({
   HeroRef,
   WhatRef,
@@ -43,17 +44,18 @@ export default function Footer({
 
   function Col1() {
     return (
-      <Stack spacing={5}>
+      <Stack spacing={2}>
         <Image w={"150px"} src={Logo} />
         <Text fontWeight={"light"} fontSize={14}>
-        SMS Ethiopia is a licensed A2P service provider in Ethiopia. We assist enterprises and businesses in communicating with their customers and employees in an effective and professional manner by utilizing Ethio Telecom's newly released SMS service.
+          SMS Ethiopia is a licensed A2P service provider in Ethiopia. We assist
+          enterprises and businesses in communicating with their customers and
+          employees in an effective and professional manner by utilizing Ethio
+          Telecom's newly released SMS service.
         </Text>
         <HStack>
           <SocialBtn
             icon={<AiFillLinkedin />}
-            link={
-              "https://www.linkedin.com/company/sms-ethiopia/"
-            }
+            link={"https://www.linkedin.com/company/sms-ethiopia/"}
           />
           <SocialBtn
             icon={<BsInstagram />}
@@ -70,14 +72,14 @@ export default function Footer({
 
   function Col2({ data }) {
     return (
-      <Stack alignItems={"flex-start"} spacing={4}>
+      <Stack alignItems={"flex-start"} spacing={2}>
         <Heading color={"#FAC119"} fontSize={"lg"}>
           {data?.title}
         </Heading>
         {data?.sub?.map((data, index) => {
           return (
             <Button
-            fontWeight={"medium"}
+              fontWeight={"medium"}
               key={index}
               variant={"link"}
               color={"white"}
@@ -113,12 +115,42 @@ export default function Footer({
         backgroundRepeat: "no-repeat",
       }}
     >
-      <SimpleGrid columns={[1, 2, 3, 4]} spacing={16}>
-        <Col1 />
-        {Data?.map((data, index) => {
-          return <Col2 data={data} key={index} />;
-        })}
-      </SimpleGrid>
+      <div className=" grid grid-cols-1 md:grid-cols-4 w-full items-start">
+        <div className="md:col-span-3 w-full ">
+          <SimpleGrid columns={[1, 2, 3, 4]} spacing={10}>
+            <Col1 />
+            {Data?.map((data, index) => {
+              return <Col2 data={data} key={index} />;
+            })}
+          </SimpleGrid>
+        </div>
+        <div className="flex  items-end justify-end ">
+          <div className="flex flex-col items-start justify-end space-y-2">
+          <h3 className="font-semibold text-[#F1C22E] text-xl">Contact Us</h3>
+            <div className="flex flex-col items-start space-y-2 text-white">
+              <div className="flex items-center space-x-2">
+                <FaMapMarker className="text-gray-300" />
+                <h3 className="font-semibold text-[#fff] text-xl">Address</h3>
+              </div>
+              <p className="text-sm text-gray-300">
+                Meskel Flower, Jeme'a BLDG 7th floor Addis Ababa Ethiopia
+              </p>
+            </div>
+
+            {/* phone */}
+            <div className="flex flex-col items-start space-y-2 text-white">
+              <div className="flex items-center space-x-2">
+                <BsFillTelephoneFill className="text-gray-300" />
+                <h3 className="font-medium">Phone</h3>
+              </div>
+              <div className="text-sm text-gray-300 flex items-center space-x-2">
+                {/* <a href={"tel:+251 911520105"}>+251944721682</a> */}
+                <a href={"tel:+251 944721682"}>0944721682</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </Stack>
   );
 }

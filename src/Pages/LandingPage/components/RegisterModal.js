@@ -40,6 +40,7 @@ const RegisterModal = ({ children }) => {
               {isLogIn ? (
                 !forgotPassword ? (
                   <Login
+                  isOpen={isOpen}
                     onClose={onClose}
                     forgotPassword={forgotPassword}
                     setForgotPassword={setForgotPassword}

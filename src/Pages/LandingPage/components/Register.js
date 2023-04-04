@@ -32,8 +32,8 @@ const Register = ({ onClose }) => {
   const { login } = useAuth();
   const [phone, setPhone] = useValidPhone();
   const [showPassword, setShowPassword] = useState(true);
-  const [isAgreed, setIsAgreed] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);
+  const [isAgreed, setIsAgreed] = useState(false);
   const [Code, setCode] = useState("");
   const [hasPhone, sethasPhone] = useState(false);
   const toast = useToast();
